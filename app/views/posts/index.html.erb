@@ -1,13 +1,9 @@
 <div class="container pt-5 mt-3">
-  <%= render 'shared/back-to-home' %>
   <h1 class="w-100 text-center pb-5 mt-3 title-index">Toutes les dernières tendances</h1>
   <ul class="w-100 p-0">
     <% @posts.each do |post| %>
       <div class="card-article w-100 border mb-5 p-4 d-flex align-items-center justify-content-between shadow">
         <h3 class="link-article w-75 m-0"><%= post.title %></h3>
-        <% if current_user.id == post.user_id %>
-          <%= link_to icon('fas', 'trash-alt'), post_path(post), method: :delete,class: "btn btn-danger btn-sm", data: {confirm: "Etes-vous sur de vouloir supprimer votre article ? "} %>
-        <% end %>
         <%= link_to "Acceder à l'article", post_path(post), class: "btn btn-primary" %>
       </div>
     <% end %>

@@ -1,11 +1,13 @@
 <div class="container pt-5 mt-3">
-  <%= render 'shared/back-to-index' %>
   <div class="content-show border p-4 mt-3 shadow">
     <h1 class="w-100 pb-5 mt-5 text-primary"><%= @post.title %></h1>
     <p><%= @post.content %></p>
     <div class="link-content w-100 text-right d-flex align-items-center justify-content-between mt-5">
       <p><i class="fas fa-paper-plane"></i> par : <strong class="text-primary"><%= @post.user.nickname %></strong> <i class="far fa-calendar-alt"></i> <%= @post.created_at.strftime('%d-%m-%Y') %></p>
       <a href="<%= @post.url %>" class="btn btn-primary">Acceder à la source</a>
+        <% if current_user == @post.user %>
+          <%= link_to "delete this article", post_path(@post), method: :delete, data: {confirm: "are you sure?"} %>
+        <% end %>
     </div>
   </div>
   <div class="comment border p-4 mt-5 mb-5 shadow">
